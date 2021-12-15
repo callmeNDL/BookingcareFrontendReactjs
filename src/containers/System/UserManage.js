@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './UserManage.scss'
-import {getAllUsers,createNewUserService} from '../../services/userService'
+import {getAllUsers,createNewUserService,deleteUserService} from '../../services/userService'
 import ModalUser from './ModalUser';
 class UserManage extends Component {
 
@@ -50,12 +50,24 @@ class UserManage extends Component {
                    isOpenModalUser: false,
                })
             }
-            console.log('response data from child',response);
 
         } catch (e) {
             console.log(e);
         }
         
+    }
+    handleDeleUser = async(user)=>{
+        console.log('click delete',user)
+        try {
+            let res= await deleteUserService(user.id)
+            if(res.errCode===0){
+                await this.getAllUserFromReact();
+            }else{
+                alert(res.errMessage)
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     render() {
@@ -92,14 +104,14 @@ class UserManage extends Component {
                         { arrUsers && arrUsers.map((item,index)=>{
                             return(
                                 //<div>
-                                <tr>
+                                <tr key={index}>
                                     <td >{item.email}</td>
                                     <td>{item.firstName}</td>
                                     <td>{item.lastName}</td>
                                     <td>{item.address}</td>
                                     <td>
                                         <button className="btn-edit"><i className="fas fa-pencil-alt"></i></button>
-                                        <button className="btn-delete"><i className="fas fa-trash"></i></button>
+                                        <button className="btn-delete" onClick={()=>this.handleDeleUser(item)}><i className="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 //</div>

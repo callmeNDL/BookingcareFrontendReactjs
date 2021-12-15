@@ -15,7 +15,10 @@ class ModalUser extends Component {
         }
     }
     componentDidMount() {
+       
     }
+
+
     toggle = () => {
         this.props.toggleFromParent();
     }
