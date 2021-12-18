@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-class ProductManage extends Component {
+class HomeFooter extends Component {
 
     state = {
 
@@ -13,7 +13,10 @@ class ProductManage extends Component {
 
     render() {
         return (
-            <div className="text-center" >Manage products</div>
+            <div className="home-footer" >
+                
+                <p>&copy; 2021 nguyenduclong.com <a target='_blank' href='https://github.com/callmeNDL'>More information Github .&#8594; Click here &#8592;</a></p>
+            </div>
         )
     }
 
@@ -29,4 +32,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductManage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeFooter);
