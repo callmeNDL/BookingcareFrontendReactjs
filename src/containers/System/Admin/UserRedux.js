@@ -6,7 +6,7 @@ import { LANGUAGES } from '../../../utils/constant';
 import * as actions from '../../../store/actions'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
-
+import TableManagerUser from './TableManagerUser';
 class UserRedux extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +25,8 @@ class UserRedux extends Component {
             gender:'',
             position:'',
             role:'',
-            avatar:''
+            avatar:'',
+       
 
         }
     }
@@ -59,6 +60,20 @@ class UserRedux extends Component {
                 role : arrRoles && arrRoles.length >0 ?arrRoles[0].key:''
             })
         }
+        if (prevProps.listUsers !== this.props.listUsers) {
+            this.setState({
+                email:'',
+                password:'',
+                firstName:'',
+                lastName:'',
+                phoneNumber:'',
+                address:'',
+                gender:'',
+                position:'',
+                role:'',
+                avatar:'',
+            })
+        }
 
     }
     handleOnchangeImage = (event) => {
@@ -86,6 +101,7 @@ class UserRedux extends Component {
     handleSaveUSer=()=>{
         let isValid= this.checkValidateInput();
         if(isValid===false) return;
+       
 
         //fire redux action
         this.props.createNewUser({
@@ -99,6 +115,9 @@ class UserRedux extends Component {
             roleId: this.state.role,
             positionId: this.state.position,
         })
+        setTimeout(()=>{
+            this.props.fetchUserRedux();
+        },1000)
 
     }
     onChangeInput=(event ,id)=>{
@@ -266,7 +285,7 @@ class UserRedux extends Component {
                                 </div>
 
                             </div>
-                            <div className='col-12 mt-3'>
+                            <div className='col-12 my-3'>
                                 <button  
                                     className='btn btn-primary'
                                     
@@ -275,12 +294,17 @@ class UserRedux extends Component {
                                     <FormattedMessage id="manager-user.save"/>
                                 </button>
                             </div>
-
+                            <div className='col-12 mt-5'>
+                                <TableManagerUser />
+                            </div>
+                            
+                           
+                        
+                        
                         </div>
                     </div>
-
-
                 </div>
+               
                 {this.state.isOpen=== true &&
                 <Lightbox
                     mainSrc={this.state.previewImgURL}
@@ -300,7 +324,8 @@ const mapStateToProps = state => {
         genderRedux: state.admin.genders,
         positionRedux: state.admin.positions,
         roleRedux: state.admin.roles,
-        isLoadingGender: state.admin.isLoadingGender
+        isLoadingGender: state.admin.isLoadingGender,
+        listUsers: state.admin.users,
     };
 };
 
@@ -310,6 +335,9 @@ const mapDispatchToProps = dispatch => {
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
         createNewUser:(data)=>dispatch(actions.createNewUser(data)),
+        fetchUserRedux: ()=> dispatch(actions.fetchAllUSersStart()),
+       
+
 
         // processLogout: () => dispatch(actions.processLogout()),
         // changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))
