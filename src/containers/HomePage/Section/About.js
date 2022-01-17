@@ -15,7 +15,7 @@ class About extends Component {
         return (
             <div className="section-about" >
                 <div className='about-title'>
-                    Vì sao bệnh nhân đặt lịch khám với bác sĩ thông qua BookingCare?
+                    Vì sao bệnh nhân đặt lịch khám với bác sĩ thông qua ứng dụng ?
                 </div>
                 <div className='about-img'>
                 </div>

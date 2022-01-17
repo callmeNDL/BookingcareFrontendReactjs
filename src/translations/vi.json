@@ -65,5 +65,9 @@
         "save":"Lưu người dùng",
         "edit":"Cập nhật ",
         "upload-img":"Tải ảnh"
+    },
+    "homepage":{
+        "out-standing-doctor":"Bác sĩ nổi bật trong tuần",
+        "more-information":"Xem thêm"
     }
 }

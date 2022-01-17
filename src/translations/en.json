@@ -12,7 +12,7 @@
         "welcome": "Welcome"
     },
     "banner":{
-        "title1" :"MEDICAL BACKGROUND",
+        "title1" :"MEDICAL PLATFORM",
         "title2":"COMPREHENSIVE HEALTH CARE",
         "title3":"Remote health check",
         "title4":"General examination",
@@ -66,6 +66,10 @@
         "save":"Save User",
         "edit":"Edit user",
         "upload-img":"Upload Avatar"
+    },
+    "homepage":{
+        "out-standing-doctor":"Famous doctor through the week",
+        "more-information":"More Information"
     }
    
 }
